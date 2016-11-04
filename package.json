@@ -1,7 +1,7 @@
 {
   "name": "fer-app",
   "version": "0.0.1",
-  "homepage": "http://juanjob.info/fer-app",
+  "homepage": "https://guaqwel.github.io/fer-app/",
   "devDependencies": {
     "gh-pages": "^0.11.0",
     "react-scripts": "0.7.0"
@@ -13,10 +13,10 @@
     "skeleton-css": "^2.0.4"
   },
   "scripts": {
+    "deploy": "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build&&gh-pages -d build"
+    "eject": "react-scripts eject"
   }
 }
