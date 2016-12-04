@@ -101,13 +101,14 @@ class App extends Component {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         "permissions": "http://*/",
-        'Access-Control-Allow-Origin': '* ha'
+        'Access-Control-Allow-Origin': '*',
+        'withCredentials': true
       },
       data: {
         to: telNumber.toString(),
         body: msgText,
       },
-      withCredentials: false,
+      withCredentials: true,
        responseType: 'json'
     })
     .then((response) => {
