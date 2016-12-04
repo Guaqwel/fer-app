@@ -22,7 +22,62 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
+    this.createCORSRequest =this.createCORSRequest.bind(this);
+    this.getTitle = this.getTitle.bind(this);
+    this.makeCorsRequest =  this.makeCorsRequest.bind(this);
   }
+  createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  console.info(xhr)
+  return xhr;
+}
+
+// Helper method to parse the title tag from the response.
+ getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+// Make the actual CORS request.
+ makeCorsRequest() {
+  // This is a sample server that supports CORS.
+  var url = 'https://glacial-plateau-98876.herokuapp.com/sms';
+
+  var xhr = this.createCORSRequest('POST', url);
+  console.info('Clish')
+
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  console.info('Clish 1.2')
+
+  xhr.onload = () => {
+    console.info('Clish 2')
+
+    var text = xhr.responseText;
+    var title = this.getTitle(text);
+    alert('Response from CORS request to ' + url + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
 
   handleTextChange(evt) {
    this.setState({text: evt.target.value});
@@ -36,18 +91,26 @@ class App extends Component {
     evt.preventDefault();
     let msgText = this.state.text;
     let telNumber = this.state.number;
-    let tel = telNumber.toString()
+    let tel = telNumber.toString();
+    this.createCORSRequest();
+    this.makeCorsRequest();
 
-    axios.post('https://glacial-plateau-98876.herokuapp.com/sms',
-          {
-            "to": telNumber.toString(),
-            "body": msgText
-          },
-          {
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-          }
-        ).then((response) => {
+    axios({
+      method: 'post',
+      url: 'https://glacial-plateau-98876.herokuapp.com/sms',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        "permissions": "http://*/",
+        'Access-Control-Allow-Origin': '*'
+      },
+      data: {
+        to: telNumber.toString(),
+        body: msgText,
+      },
+      withCredentials: false,
+       responseType: 'json'
+    })
+    .then((response) => {
           console.log(response);
           let newItem = {
             text: msgText,
@@ -121,3 +184,16 @@ export default App;
 //To-do:
 
 // Creat custom input component
+//
+// {
+//   "to": telNumber.toString(),
+//   "body": msgText,
+//   "Access-Control-Allow-Origin": '*',
+//   withCredentials: true,
+//   'Content-Type': 'application/jso'
+// },
+// {
+//
+//   // 'Content-Type': 'application/json'
+// },
+// {}
