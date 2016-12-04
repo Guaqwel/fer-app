@@ -101,7 +101,7 @@ class App extends Component {
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         "permissions": "http://*/",
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '* ha'
       },
       data: {
         to: telNumber.toString(),
