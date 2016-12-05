@@ -99,10 +99,7 @@ class App extends Component {
       method: 'POST',
       url: 'https://glacial-plateau-98876.herokuapp.com/sms',
       headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        "permissions": "http://*/",
-        'Access-Control-Allow-Origin': '*',
-        'withCredentials': true
+        'Content-Type': 'Apliccation/json',
       },
       data: {
         to: telNumber.toString(),
