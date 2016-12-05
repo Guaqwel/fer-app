@@ -92,11 +92,11 @@ class App extends Component {
     let msgText = this.state.text;
     let telNumber = this.state.number;
     let tel = telNumber.toString();
-    this.createCORSRequest();
-    this.makeCorsRequest();
+    // this.createCORSRequest();
+    // this.makeCorsRequest();
 
     axios({
-      method: 'post',
+      method: 'POST',
       url: 'https://glacial-plateau-98876.herokuapp.com/sms',
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
