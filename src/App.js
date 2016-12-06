@@ -150,7 +150,7 @@ class App extends Component {
             <div className="row" style={{marginTop: 2 +'rem'}}>
               <div className="">
                 <label> Tel </label>
-                <input type="number" className="input-text" onChange={this.handleNumberChange} placeholder="The 📞 number" value={this.state.number}></input>
+                <input type="number" className="input-text" onChange={this.handleNumberChange} placeholder="📞 Number" value={this.state.number}></input>
               </div>
           </div>
           <div className="row">
