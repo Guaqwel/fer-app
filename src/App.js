@@ -143,20 +143,20 @@ class App extends Component {
       <div className="App ">
         <div className="App-header">
           <img src={logo} className="App-logo img-logo-fer" alt="logo" />
-          <h3 className="head-title">Welcome to The Fern App for messages</h3>
+          <h3 className="head-title">Welcome to The Fern App for Messages</h3>
         </div>
         <div className='container'>
           <form className="form" onSubmit={this.handleSubmit}>
             <div className="row" style={{marginTop: 2 +'rem'}}>
               <div className="">
                 <label> Tel </label>
-                <input type="number" className="input-text" onChange={this.handleNumberChange} placeholder="El numero de  📞" value={this.state.number}></input>
+                <input type="number" className="input-text" onChange={this.handleNumberChange} placeholder="The 📞 number" value={this.state.number}></input>
               </div>
           </div>
           <div className="row">
             <div className="">
               <label> Text </label>
-              <textarea type="text" className="input-text textTarea-box" onChange={this.handleTextChange} placeholder="Tu msg favorito  🤖" value={this.state.text} />
+              <textarea type="text" className="input-text textTarea-box" onChange={this.handleTextChange} placeholder="Pleae type your text 🤖" value={this.state.text} />
             </div>
           </div>
             <input type="submit" value="Send"></input>
