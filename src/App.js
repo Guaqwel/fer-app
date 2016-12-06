@@ -156,7 +156,7 @@ class App extends Component {
           <div className="row">
             <div className="">
               <label> Text </label>
-              <textarea type="text" className="input-text textTarea-box" onChange={this.handleTextChange} placeholder="Pleae type your text 🤖" value={this.state.text} />
+              <textarea type="text" className="input-text textTarea-box" onChange={this.handleTextChange} placeholder="Please type your text 🤖" value={this.state.text} />
             </div>
           </div>
             <input type="submit" value="Send"></input>
